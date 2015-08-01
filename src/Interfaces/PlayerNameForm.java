@@ -40,6 +40,8 @@ public class PlayerNameForm extends javax.swing.JFrame {
         if (playermode == 0) {
             player2NameText.setText("Computer");
             player2NameText.setEnabled(false);
+        }else {
+            levelPanel.setVisible(false);
         }
 
     }
