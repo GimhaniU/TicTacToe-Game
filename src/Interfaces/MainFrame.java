@@ -10,10 +10,8 @@ import Models.NetworkPlayer;
 import Models.Player;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.io.IOException;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +26,8 @@ import javax.swing.border.LineBorder;
  */
 public class MainFrame extends javax.swing.JFrame implements Runnable {
 
+    static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(MainFrame.class.getName());
+    
     private boolean turn;
     private int turn_count;
     private ImageIcon image1;
@@ -652,28 +652,36 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
     private void setImages() {
         if (player1 != null) {
             if (player1.getImage() == 1) {
-                System.out.println(player1.getImage());
+                
                 this.image1 = new ImageIcon(".\\src\\Pictures\\gold_x.png");
+                log.debug("player1:gold_X");
             } else if (player1.getImage() == 2) {
-                System.out.println(player1.getImage());
+                
                 this.image1 = new ImageIcon(getClass().getResource("/Pictures/gold_o.png"));
+                log.debug("player1: gold_O");
             } else if (player1.getImage() == 3) {
-                System.out.println(player1.getImage());
+                
                 this.image1 = new ImageIcon(getClass().getResource("/Pictures/red_x.png"));
+                log.debug("player1: red_x");
             } else if (player1.getImage() == 4) {
-                System.out.println(player1.getImage());
+                
                 this.image1 = new ImageIcon(getClass().getResource("/Pictures/red_o.png"));
+                log.debug("player1: red_o");
             }
         }
         if (player2 != null) {
             if (player2.getImage() == 1) {
                 this.image2 = new ImageIcon(getClass().getResource("/Pictures/gold_x.png"));
+                log.debug("player1: gold_x");
             } else if (player2.getImage() == 2) {
                 this.image2 = new ImageIcon(getClass().getResource("/Pictures/gold_o.png"));
+                log.debug("player1: gold_o");
             } else if (player2.getImage() == 3) {
                 this.image2 = new ImageIcon(getClass().getResource("/Pictures/red_x.png"));
+                log.debug("player1: red_x");
             } else if (player2.getImage() == 4) {
                 this.image2 = new ImageIcon(".\\src\\Pictures\\red_o.png");
+                log.debug("player1: red_o");
             }
         }
 
@@ -961,12 +969,13 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         boolean humanPart = humanPart(component);
         if (humanPart) {
             boolean checkToOwnWin = checkToOwnWin(component);
-            System.out.println(checkToOwnWin + "OWNwin");
+            log.debug(checkToOwnWin+"own win");
+            
             if (!checkToOwnWin) {
                 boolean checkToAvoidWin = checkToAvoidWin(component);
                 System.out.println(checkToAvoidWin);
                 if (!checkToAvoidWin) {
-                    System.out.println("random");
+                    log.debug("random-hard");
                     randomClick();
                 }
             }
@@ -978,9 +987,9 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         boolean humanPart = humanPart(component);
         if (humanPart) {
             boolean checkToAvoidWin = checkToAvoidWin(component);
-            System.out.println(checkToAvoidWin);
+            log.debug(checkToAvoidWin);
             if (!checkToAvoidWin) {
-                System.out.println("random");
+                log.debug("random-medium");
                 randomClick();
             }
 
@@ -991,7 +1000,7 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
     public void controlOnePlayerGameEasy(Component component) {
         boolean humanPart = humanPart(component);
         if (humanPart) {
-            System.out.println("random");
+            log.debug("random-easy");
             randomClick();
 
         }
@@ -1027,7 +1036,8 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
             } else {
                 ar[i] = 10 + i;
             }
-            System.out.println("ar[" + i + "] = " + ar[i]);
+            log.debug("ar[" + i + "] = " + ar[i]);
+            
         }
 
         L1:
