@@ -5,12 +5,16 @@
  */
 package Interfaces;
 
+import org.apache.log4j.Logger;
+
 /**
  *
  * @author Gimhani
  */
 public class HostDetailForm extends javax.swing.JFrame {
     public Thread thread;
+    
+    static Logger log = Logger.getLogger(HostDetailForm.class.getName());
     /**
      * Creates new form NetworkDetialTaker
      */

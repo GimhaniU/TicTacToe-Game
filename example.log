@@ -1,0 +1,10 @@
+2015-08-01 DEBUG [main] (Example.java:25) - This is a Debug
+2015-08-01  INFO [main] (Example.java:26) - This is an Info
+2015-08-01  WARN [main] (Example.java:27) - This is a Warn
+2015-08-01 ERROR [main] (Example.java:28) - This is an Error
+2015-08-01 FATAL [main] (Example.java:29) - This is a Fatal
+2015-08-01 DEBUG [AWT-EventQueue-0] (MainFrame.java:657) - player1:gold_X
+2015-08-01 DEBUG [AWT-EventQueue-0] (MainFrame.java:684) - player1: red_o
+2015-08-01 DEBUG [AWT-EventQueue-0] (MainFrame.java:1003) - random-easy
+2015-08-01 DEBUG [AWT-EventQueue-0] (MainFrame.java:1003) - random-easy
+2015-08-01 DEBUG [AWT-EventQueue-0] (MainFrame.java:1003) - random-easy

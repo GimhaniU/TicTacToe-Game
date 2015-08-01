@@ -5,12 +5,15 @@
  */
 package Interfaces;
 
+import org.apache.log4j.Logger;
+
 /**
  *
  * @author DinsuG
  */
 public class ModeSelector extends javax.swing.JFrame {
 
+    static Logger log = Logger.getLogger(ModeSelector.class.getName());
     /**
      * Creates new form Home
      */
