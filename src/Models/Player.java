@@ -5,21 +5,47 @@
  */
 package Models;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author Gimhani
  */
 public class Player {
+
+    DateFormat dateFormat;
+    Date date;
     private String name;
+    private String currentDate;
+    private String playerType;
+    private int isWin;
     private int playerNumber; //player 1 or 2
     private int image; //gold_x=1 ,gold_o=2, red_x=3, red_o=4
     private int port;
     private String ipAddress;
-    
     private boolean isServer;
     private int turn; //turn 1 and 2
 
+    public Player() {
+        this.dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        this.date = new Date();
+       
+    }
+    
+    public Player(String name,String type,String Date,int isWin){
+        this();
+        this.name=name;
+        this.date=date;
+        this.playerType=type;
+        this.isWin=isWin;
+        
+        
+    }
+
     public Player(String name, int playerNumber, int image, int turn) {
+        this();
         this.name = name;
         this.playerNumber = playerNumber;
         this.image = image;
@@ -27,11 +53,36 @@ public class Player {
     }
 
     public Player(int port, String ipAddress, boolean isServer, int turn) {
+        this();
         this.port = port;
         this.ipAddress = ipAddress;
         this.isServer = isServer;
-        this.turn=turn;
-        
+        this.turn = turn;
+
+    }
+
+    public String getCurrentDate() {
+        return currentDate;
+    }
+
+    public void setCurrentDate() {
+        this.currentDate = dateFormat.format(date);
+    }
+
+    public String getPlayerType() {
+        return playerType;
+    }
+
+    public void setPlayerType(String playerType) {
+        this.playerType = playerType;
+    }
+
+    public int getIsWin() {
+        return isWin;
+    }
+
+    public void setIsWin(int isWin) {
+        this.isWin = isWin;
     }
 
     public int getPlayerNumber() {
@@ -57,7 +108,6 @@ public class Player {
     public void setTurn(int turn) {
         this.turn = turn;
     }
-
 
     public String getName() {
         return name;
@@ -90,5 +140,5 @@ public class Player {
     public void setIpAddress(String ipAddress) {
         this.ipAddress = ipAddress;
     }
-    
+
 }

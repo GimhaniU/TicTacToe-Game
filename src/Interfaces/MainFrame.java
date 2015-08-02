@@ -6,12 +6,16 @@
 package Interfaces;
 
 import Controllers.TicTacController;
+import Controllers.playerController;
 import Models.NetworkPlayer;
 import Models.Player;
+import db_utilities.DBConnection;
+import db_utilities.DBHandler;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.sql.SQLException;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,19 +31,16 @@ import javax.swing.border.LineBorder;
 public class MainFrame extends javax.swing.JFrame implements Runnable {
 
     static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(MainFrame.class.getName());
-    
+
     private boolean turn;
     private int turn_count;
     private ImageIcon image1;
     private ImageIcon image2;
     JButton[] buttonset = new JButton[9];
-
     private Player player1;
     private Player player2;
-
     int playing_mode = 0;   //0-1player, 1-twoplayersame , 2-serverclient
     private int playing_type;
-
     //for networkplayer
     private String[] matrix = new String[9];
     NetworkPlayer network_player;
@@ -57,7 +58,7 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         this.setLocationRelativeTo(null);
         chanceLabel.setText("Chance for");
 
-        labelController();
+        //labelController();
         buttonset[0] = this.A1;
         buttonset[1] = this.A2;
         buttonset[2] = this.A3;
@@ -76,11 +77,11 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         this.player2 = player2;
         this.playing_type = playing_type;
         this.playing_mode = playing_mode;
-
         //setting images for 2 players
         setImages();
         labelA.setIcon(image1);
         labelB.setIcon(image2);
+        labelController();
 
     }
 
@@ -135,6 +136,7 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         jMenu1 = new javax.swing.JMenu();
         newGameMenu = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
 
@@ -524,6 +526,9 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         });
         jMenu1.add(jMenuItem2);
 
+        jMenuItem1.setText("jMenuItem1");
+        jMenu1.add(jMenuItem1);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
@@ -649,60 +654,7 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         leaveButton(evt);
     }//GEN-LAST:event_A3MouseExited
 
-    private void setImages() {
-        if (player1 != null) {
-            if (player1.getImage() == 1) {
-                
-                this.image1 = new ImageIcon(".\\src\\Pictures\\gold_x.png");
-                log.debug("player1:gold_X");
-            } else if (player1.getImage() == 2) {
-                
-                this.image1 = new ImageIcon(getClass().getResource("/Pictures/gold_o.png"));
-                log.debug("player1: gold_O");
-            } else if (player1.getImage() == 3) {
-                
-                this.image1 = new ImageIcon(getClass().getResource("/Pictures/red_x.png"));
-                log.debug("player1: red_x");
-            } else if (player1.getImage() == 4) {
-                
-                this.image1 = new ImageIcon(getClass().getResource("/Pictures/red_o.png"));
-                log.debug("player1: red_o");
-            }
-        }
-        if (player2 != null) {
-            if (player2.getImage() == 1) {
-                this.image2 = new ImageIcon(getClass().getResource("/Pictures/gold_x.png"));
-                log.debug("player1: gold_x");
-            } else if (player2.getImage() == 2) {
-                this.image2 = new ImageIcon(getClass().getResource("/Pictures/gold_o.png"));
-                log.debug("player1: gold_o");
-            } else if (player2.getImage() == 3) {
-                this.image2 = new ImageIcon(getClass().getResource("/Pictures/red_x.png"));
-                log.debug("player1: red_x");
-            } else if (player2.getImage() == 4) {
-                this.image2 = new ImageIcon(".\\src\\Pictures\\red_o.png");
-                log.debug("player1: red_o");
-            }
-        }
 
-    }
-
-    private void doByPlayerMode(MouseEvent e) {
-        TicTacController.playSound(new File(".\\src\\Sounds\\click.wav"));
-        if (playing_mode == 0) {
-            if (playing_type == 3) {
-                controlOnePlayerGameHard(e.getComponent());
-            } else if (playing_type == 2) {
-                controlOnePlayerGameMedium(e.getComponent());
-            } else if (playing_type == 1) {
-                controlOnePlayerGameEasy(e.getComponent());
-            }
-        } else if (playing_mode == 1) {
-            controlTwoPlayerGame(e.getComponent());
-        } else if (playing_mode == 2) {
-            controlNetworkGame(player1, e);
-        }
-    }
     private void A1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A1MouseEntered
         enterButton(evt);
     }//GEN-LAST:event_A1MouseEntered
@@ -783,6 +735,71 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
     private void C4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C4MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_C4MouseClicked
+    private void setImages() {
+        if (player1 != null) {
+            if (player1.getImage() == 1) {
+
+                this.image1 = new ImageIcon(".\\src\\Pictures\\gold_x.png");
+                log.debug("player1:gold_X");
+            } else if (player1.getImage() == 2) {
+
+                this.image1 = new ImageIcon(getClass().getResource("/Pictures/gold_o.png"));
+                log.debug("player1: gold_O");
+            } else if (player1.getImage() == 3) {
+
+                this.image1 = new ImageIcon(getClass().getResource("/Pictures/red_x.png"));
+                log.debug("player1: red_x");
+            } else if (player1.getImage() == 4) {
+
+                this.image1 = new ImageIcon(getClass().getResource("/Pictures/red_o.png"));
+                log.debug("player1: red_o");
+            }
+        }
+        if (player2 != null) {
+            if (player2.getImage() == 1) {
+                this.image2 = new ImageIcon(getClass().getResource("/Pictures/gold_x.png"));
+                log.debug("player1: gold_x");
+            } else if (player2.getImage() == 2) {
+                this.image2 = new ImageIcon(getClass().getResource("/Pictures/gold_o.png"));
+                log.debug("player1: gold_o");
+            } else if (player2.getImage() == 3) {
+                this.image2 = new ImageIcon(getClass().getResource("/Pictures/red_x.png"));
+                log.debug("player1: red_x");
+            } else if (player2.getImage() == 4) {
+                this.image2 = new ImageIcon(".\\src\\Pictures\\red_o.png");
+                log.debug("player1: red_o");
+            }
+        }
+
+    }
+
+    private void doByPlayerMode(MouseEvent e) {
+        TicTacController.playSound(new File(".\\src\\Sounds\\click.wav"));
+        if (playing_mode == 0) {
+            if (playing_type == 3) {
+                controlOnePlayerGameHard(e.getComponent());
+            } else if (playing_type == 2) {
+                controlOnePlayerGameMedium(e.getComponent());
+            } else if (playing_type == 1) {
+                controlOnePlayerGameEasy(e.getComponent());
+            }
+        } else if (playing_mode == 1) {
+            controlTwoPlayerGame(e.getComponent());
+        } else if (playing_mode == 2) {
+            controlNetworkGame(player1, e);
+        }
+    }
+
+    //completed
+    public void randomClick() {
+        Random random = new Random();
+        int number = Math.abs(random.nextInt() % 9);
+        while (!buttonset[number].isFocusable()) {
+            number = Math.abs(random.nextInt() % 9);
+        }
+        int isWin = selectButton(number);
+
+    }
 
     public void controlOnePlayerGame(Component component) {
         JButton button = (JButton) component;
@@ -869,51 +886,61 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
 
     public String findWinner() {
         if (turn == false) {
-            return "B";
+            return player2.getName();
         }
-        return "A";
+        return player1.getName();
 
     }
 
     public void newGame() {
-        // new ModeSelector().setVisible(true);
+        new ModeSelector().setVisible(true);
         this.setVisible(false);
 
     }
 
-    public void checkWin() {
+    //complite
+    public int checkWin() {
         if (turn_count <= 9) {
             if ((A1.getText() == A2.getText()) && (A2.getText() == A3.getText()) && (A1.getText() != "")) {
                 JOptionPane.showMessageDialog(null, findWinner() + " win the match");
                 newGame();
-
+                return 1;
             } else if ((B1.getText() == B2.getText()) && (B2.getText() == B3.getText()) && (B1.getText() != "")) {
                 JOptionPane.showMessageDialog(null, findWinner() + " win the match");
                 newGame();
-
+                return 1;
             } else if ((C1.getText() == C2.getText()) && (C2.getText() == C3.getText()) && (C1.getText() != "")) {
                 JOptionPane.showMessageDialog(null, findWinner() + " win the match");
                 newGame();
+                return 1;
             } else if ((A1.getText() == B1.getText()) && (B1.getText() == C1.getText()) && (A1.getText() != "")) {
                 JOptionPane.showMessageDialog(null, findWinner() + " win the match");
                 newGame();
+                return 1;
             } else if ((A2.getText() == B2.getText()) && (B2.getText() == C2.getText()) && (A2.getText() != "")) {
                 JOptionPane.showMessageDialog(null, findWinner() + " win the match");
                 newGame();
+                return 1;
             } else if ((A3.getText() == B3.getText()) && (B3.getText() == C3.getText()) && (A3.getText() != "")) {
                 JOptionPane.showMessageDialog(null, findWinner() + " win the match");
                 newGame();
+                return 1;
             } else if ((A1.getText() == B2.getText()) && (B2.getText() == C3.getText()) && (A1.getText() != "")) {
                 JOptionPane.showMessageDialog(null, findWinner() + " win the match");
                 newGame();
+                return 1;
             } else if ((A3.getText() == B2.getText()) && (C1.getText() == B2.getText()) && (A3.getText() != "")) {
                 JOptionPane.showMessageDialog(null, findWinner() + " win the match");
                 newGame();
+                return 1;
             }
-        } else if (turn_count == 9) {
+        }
+        if (turn_count == 9) {
             JOptionPane.showMessageDialog(null, "No winner!");
             newGame();
+            return 2;
         }
+        return 0;
     }
 
     public ImageIcon showSymbol() {
@@ -922,24 +949,6 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         } else {
             return image2;
         }
-    }
-
-    public void checkSuitableClickEasy(Component component) {
-
-        JButton button = (JButton) component;
-        if (button.isFocusable()) {
-            //human network_player
-            button.setIcon(image1);
-            button.setText("0");
-            button.setFocusable(false);
-            turn_count++;
-            turn = !turn;
-            checkWin();
-            labelController();
-            //automated part
-            randomClick();
-        }
-
     }
 
     private void enterButton(MouseEvent evt) {
@@ -969,8 +978,8 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         boolean humanPart = humanPart(component);
         if (humanPart) {
             boolean checkToOwnWin = checkToOwnWin(component);
-            log.debug(checkToOwnWin+"own win");
-            
+            log.debug(checkToOwnWin + "own win");
+
             if (!checkToOwnWin) {
                 boolean checkToAvoidWin = checkToAvoidWin(component);
                 System.out.println(checkToAvoidWin);
@@ -1006,6 +1015,8 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         }
     }
 
+    //completed
+
     public boolean humanPart(Component component) {
         JButton button = (JButton) component;
         if (button.isFocusable()) {
@@ -1015,16 +1026,27 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
             button.setFocusable(false);
             turn_count++;
             turn = !turn;
-            checkWin();
-            labelController();
-            return true;
+            int checkWin = checkWin();
+            if (checkWin == 0) {
+                labelController();
+                return true;
+            } else {
+                player1.setCurrentDate();
+                player1.setIsWin(checkWin);
+                try {
+                    playerController.addNewPlay(player1);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
         return false;
     }
 
     public boolean checkSuitableClick(Component component, String player, String machine) {
         JButton button = (JButton) component;
-
         //automated part
         int ar[] = new int[9];
 
@@ -1037,17 +1059,12 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
                 ar[i] = 10 + i;
             }
             log.debug("ar[" + i + "] = " + ar[i]);
-            
+
         }
 
         L1:
         while (true) {
-               // try {
-            //   Thread.sleep(1000);
-            //} catch (InterruptedException ex) {
-            //    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-            // }
-
+           
             // horisontally check 3rd one
             int j = 0;
             while (j < 7) {
@@ -1147,18 +1164,7 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
 
     }
 
-    public void randomClick() {
-        Random random = new Random();
-        int number = Math.abs(random.nextInt() % 9);
-        while (!buttonset[number].isFocusable()) {
-            number = Math.abs(random.nextInt() % 9);
-        }
-        selectButton(number);
-        labelController();
-
-    }
-
-    public void selectButton(int j) {
+    public int selectButton(int j) {
         try {
             Thread.sleep(500);
         } catch (InterruptedException ex) {
@@ -1169,80 +1175,28 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         buttonset[j].setFocusable(false);
         turn_count++;
         turn = !turn;
-        checkWin();
+        int checkWin = checkWin();
+        if (checkWin == 0) {
+            labelController();
+        } else {
+            player1.setCurrentDate();
+            if (checkWin == 1) {
+                player1.setIsWin(0);
+            } else {
+                player1.setIsWin(checkWin);
+            }
+            try {
+                playerController.addNewPlay(player1);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        return checkWin;
     }
 
-    /**
-     * **************************************************************************************8888
-     * //hard//////////////////////////////// public boolean
-     * checkToAvoidWin(Component component) { return
-     * checkSuitableClick(component, "0", "1"); }
-     *
-     * public boolean checkToOwnWin(Component component) { return
-     * checkSuitableClick(component, "1", "0"); }
-     *
-     * public void controlOnePlayerGameHard(Component component) { boolean
-     * checkToOwnWin = checkToOwnWin(component); if (!checkToOwnWin) { boolean
-     * checkToAvoidWin = checkToAvoidWin(component); if (!checkToAvoidWin) {
-     * randomClick(); } } }
-     *
-     * public boolean checkSuitableClick(Component component, String player,
-     * String machine) { JButton button = (JButton) component; if
-     * (button.isFocusable()) { //human player button.setIcon(image1);
-     * button.setText("0"); button.setFocusable(false); turn_count++; turn =
-     * !turn; checkWin(); labelController(); //automated part int ar[] = new
-     * int[9];
-     *
-     * for (int i = 0; i < 9; i++) { if (!buttonset[i].isFocusable() &&
-     * buttonset[i].getText() == player) { ar[i] = 0; } else if
-     * (!buttonset[i].isFocusable() && buttonset[i].getText() == machine) {
-     * ar[i] = 1; } else { ar[i] = 10 + i; } }
-     *
-     * L1: while (true) { try { Thread.sleep(1000); } catch
-     * (InterruptedException ex) {
-     * Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-     * } int j = 0; while (j < 7 && (ar[j] == ar[j + 1]) && ar[j] == 0) { if
-     * (ar[j + 2] != 1) { selectButton(j + 2); return true; } else { j += 3; } }
-     * j = 0; while (j < 7 && (ar[j] == ar[j + 2]) && ar[j] == 0) { if (ar[j +
-     * 1] != 1) { selectButton(j + 3); return true; } else { j += 3; } } j = 0;
-     * while (j < 7 && (ar[j + 1] == ar[j + 2]) && ar[j + 1] == 0) { if (ar[j]
-     * != 1) { selectButton(j); return true; } else { j += 3; } }
-     *
-     * j = 0; while (j < 3 && (ar[j] == ar[j + 3]) && ar[j] == 0) { if (ar[j +
-     * 6] != 1) { selectButton(j + 6); return true; } else { j += 1; } } j = 0;
-     * while (j < 3 && (ar[j] == ar[j + 6]) && ar[j] == 0) { if (ar[j + 3] != 1)
-     * { selectButton(j + 3); return true; } else { j += 1; } }
-     *
-     * j = 0; while (j < 3 && (ar[j + 3] == ar[j + 6]) && ar[j + 3] == 0) { if
-     * (ar[j] != 1) { selectButton(j); return true; } else { j += 1; } }
-     *
-     * for (j = 0; j < 3; j += 2) { if ((ar[j] == ar[4]) && ar[j] == 0) { if
-     * (ar[8 - j] != 1) { selectButton(8 - j); return true; } } else if ((ar[j]
-     * == ar[8 - j]) && ar[j] == 0) { if (ar[4] != 1) { selectButton(4); return
-     * true; } } else if ((ar[4] == ar[8 - j]) && ar[4] == 0) { if (ar[j] != 1)
-     * { selectButton(j); return true; } } }
-     *
-     * return false;
-     *
-     * }
-     * }
-     *
-     * return false; }
-     *
-     * public void randomClick() { Random random = new Random(); int number =
-     * Math.abs(random.nextInt() % 9); while (!buttonset[number].isFocusable())
-     * { number = Math.abs(random.nextInt() % 9); } selectButton(number);
-     * labelController();
-     *
-     * }
-     *
-     * public void selectButton(int j) { buttonset[j].setIcon(image2);
-     * buttonset[j].setText("1"); buttonset[j].setFocusable(false);
-     * turn_count++; turn = !turn; checkWin(); }
-     *
-     *
-     **********************************************************************
-     */
     /**
      * @param args the command line arguments
      */
@@ -1304,6 +1258,7 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;

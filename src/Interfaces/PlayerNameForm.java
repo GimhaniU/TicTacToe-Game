@@ -15,8 +15,8 @@ import javax.swing.Icon;
 public class PlayerNameForm extends javax.swing.JFrame {
 
     int playermode;
-    int image1;
-    int image2;
+    int imagePlayer2;
+    int imagePlayer1;
 
     /**
      * Creates new form PlayerNameForm
@@ -25,8 +25,8 @@ public class PlayerNameForm extends javax.swing.JFrame {
         initComponents();
         playermode = 0;
         this.setLocationRelativeTo(null);
-        image1 = 1; //to be used to send the 2 images for x and o
-        image2 = 4;
+        imagePlayer2 = 1; //to be used to send the 2 images for x and o
+        imagePlayer1 = 4;
         goldx_redo_toggle.setSelected(true);
         easyToggleButton.setSelected(true);
         player1moveRadio.setSelected(true);
@@ -399,14 +399,24 @@ public class PlayerNameForm extends javax.swing.JFrame {
             player1turn = 2;
             player2turn = 1;
         }
-        Player player1 = new Player(player1NameText.getText(), 1, image1, player1turn);
-        Player player2 = new Player(player2NameText.getText(), 2, image2, player2turn);
+        Player player1 = new Player(player1NameText.getText(), 1, imagePlayer1, player1turn);
+        Player player2 = new Player(player2NameText.getText(), 2, imagePlayer2, player2turn);
 
         if (mediumToggleButton.isSelected()) {
             playing_type = 2;
+            player1.setPlayerType("Medium");
+            player2.setPlayerType("Medium");
         } else if (hardToggleButton.isSelected()) {
             playing_type = 3;
+            player1.setPlayerType("Hard");
+            player2.setPlayerType("Hard");
+        }else{
+            player1.setPlayerType("Easy");
+            player2.setPlayerType("Easy");
+        
+        
         }
+        
         new MainFrame(playermode, playing_type, player1, player2).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_playButtonActionPerformed
@@ -414,29 +424,29 @@ public class PlayerNameForm extends javax.swing.JFrame {
     private void goldx_redo_toggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goldx_redo_toggleActionPerformed
         player1Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/gold_x_small.png")));
         player2Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/red_o_small.png")));
-        image1 = 1;
-        image2 = 4;
+        imagePlayer2 = 1;
+        imagePlayer1 = 4;
     }//GEN-LAST:event_goldx_redo_toggleActionPerformed
 
     private void goldx_glodo_toggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goldx_glodo_toggleActionPerformed
         player1Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/gold_x_small.png")));
         player2Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/gold_o_small.png")));
-        image1 = 1;
-        image2 = 2;
+        imagePlayer2 = 1;
+        imagePlayer1 = 2;
     }//GEN-LAST:event_goldx_glodo_toggleActionPerformed
 
     private void redx_glodo_toggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redx_glodo_toggleActionPerformed
         player1Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/red_x_small.png")));
         player2Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/gold_o_small.png")));
-        image1 = 3;
-        image2 = 2;
+        imagePlayer2 = 3;
+        imagePlayer1 = 2;
     }//GEN-LAST:event_redx_glodo_toggleActionPerformed
 
     private void redx_redo_toggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redx_redo_toggleActionPerformed
         player1Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/red_x_small.png")));
         player2Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/red_o_small.png")));
-        image1 = 3;
-        image2 = 4;
+        imagePlayer2 = 3;
+        imagePlayer1 = 4;
     }//GEN-LAST:event_redx_redo_toggleActionPerformed
 
     private void mediumToggleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mediumToggleButtonActionPerformed

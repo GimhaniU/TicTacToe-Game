@@ -87,6 +87,11 @@ public class HomePage extends javax.swing.JFrame {
         statisticsButton.setFont(new java.awt.Font("Tempus Sans ITC", 3, 24)); // NOI18N
         statisticsButton.setForeground(new java.awt.Color(51, 51, 255));
         statisticsButton.setText("Leader Board");
+        statisticsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statisticsButtonActionPerformed(evt);
+            }
+        });
 
         resumeGame.setFont(new java.awt.Font("Tempus Sans ITC", 3, 24)); // NOI18N
         resumeGame.setForeground(new java.awt.Color(51, 51, 255));
@@ -212,6 +217,10 @@ public class HomePage extends javax.swing.JFrame {
     private void resumeGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resumeGameActionPerformed
         new OptionForm(this,true).setVisible(true);
     }//GEN-LAST:event_resumeGameActionPerformed
+
+    private void statisticsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statisticsButtonActionPerformed
+       new PlayList(this, rootPaneCheckingEnabled).setVisible(true);
+    }//GEN-LAST:event_statisticsButtonActionPerformed
 
     /**
      * @param args the command line arguments
