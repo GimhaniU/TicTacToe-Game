@@ -88,14 +88,14 @@ public class ModeSelector extends javax.swing.JFrame {
         playyOverNetworkButton.setBounds(160, 180, 260, 60);
 
         optionButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/options.png"))); // NOI18N
-        optionButton.setText("Options");
+        optionButton.setText("Back");
         optionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 optionButtonActionPerformed(evt);
             }
         });
         jPanel2.add(optionButton);
-        optionButton.setBounds(353, 290, 110, 25);
+        optionButton.setBounds(360, 310, 110, 25);
 
         playWithFriendButton.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         playWithFriendButton.setText("Play with a friend in this PC");
@@ -144,7 +144,8 @@ public class ModeSelector extends javax.swing.JFrame {
     }//GEN-LAST:event_playWithComputerButtonActionPerformed
 
     private void optionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionButtonActionPerformed
-        new OptionForm(this, true).setVisible(true);
+        new HomePage().setVisible(true);
+        this.setVisible(false);
         
     }//GEN-LAST:event_optionButtonActionPerformed
 

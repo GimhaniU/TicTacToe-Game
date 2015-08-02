@@ -29,9 +29,8 @@ import javax.swing.border.LineBorder;
  * @author DinsuG
  */
 public class MainFrame extends javax.swing.JFrame implements Runnable {
-
+    
     static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(MainFrame.class.getName());
-
     private boolean turn;
     private int turn_count;
     private ImageIcon image1;
@@ -46,7 +45,8 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
     NetworkPlayer network_player;
     int position = 0;
     //private boolean is_server;
-
+    
+    
     public MainFrame() {
         initComponents();
         turn_count = 0;
@@ -81,6 +81,9 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         setImages();
         labelA.setIcon(image1);
         labelB.setIcon(image2);
+         nameLabe1player2.setText(player2.getName());
+        nameLabelPlayer1.setText(player1.getName());
+       
         labelController();
 
     }
@@ -109,13 +112,8 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         chanceLabel = new javax.swing.JLabel();
         labelA = new javax.swing.JLabel();
         labelB = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        drawn_count = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        nameLabe1player2 = new javax.swing.JLabel();
+        nameLabelPlayer1 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         buttonPanal = new javax.swing.JPanel();
         A1 = new javax.swing.JButton();
@@ -162,6 +160,12 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
 
         labelB.setText("B");
 
+        nameLabe1player2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        nameLabe1player2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        nameLabelPlayer1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        nameLabelPlayer1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -169,13 +173,17 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chanceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(labelA, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nameLabe1player2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addComponent(chanceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelA, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelB, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelB, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(nameLabelPlayer1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -183,65 +191,15 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(chanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nameLabe1player2, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelA)
-                .addGap(85, 85, 85)
-                .addComponent(labelB)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        jLabel1.setText("A won");
-
-        jLabel2.setText("B won");
-
-        jLabel3.setText("Drawn");
-
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("0");
-
-        drawn_count.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        drawn_count.setText("0");
-
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("0");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(159, 159, 159)
-                        .addComponent(jLabel3))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(drawn_count, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addComponent(nameLabelPlayer1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(drawn_count)
-                    .addComponent(jLabel6))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(labelB)
+                .addGap(57, 57, 57))
         );
 
         jPanel6.setLayout(null);
@@ -553,32 +511,26 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(homeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(homeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(homeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(82, 82, 82))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -735,62 +687,8 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
     private void C4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C4MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_C4MouseClicked
-    private void setImages() {
-        if (player1 != null) {
-            if (player1.getImage() == 1) {
-
-                this.image1 = new ImageIcon(".\\src\\Pictures\\gold_x.png");
-                log.debug("player1:gold_X");
-            } else if (player1.getImage() == 2) {
-
-                this.image1 = new ImageIcon(getClass().getResource("/Pictures/gold_o.png"));
-                log.debug("player1: gold_O");
-            } else if (player1.getImage() == 3) {
-
-                this.image1 = new ImageIcon(getClass().getResource("/Pictures/red_x.png"));
-                log.debug("player1: red_x");
-            } else if (player1.getImage() == 4) {
-
-                this.image1 = new ImageIcon(getClass().getResource("/Pictures/red_o.png"));
-                log.debug("player1: red_o");
-            }
-        }
-        if (player2 != null) {
-            if (player2.getImage() == 1) {
-                this.image2 = new ImageIcon(getClass().getResource("/Pictures/gold_x.png"));
-                log.debug("player1: gold_x");
-            } else if (player2.getImage() == 2) {
-                this.image2 = new ImageIcon(getClass().getResource("/Pictures/gold_o.png"));
-                log.debug("player1: gold_o");
-            } else if (player2.getImage() == 3) {
-                this.image2 = new ImageIcon(getClass().getResource("/Pictures/red_x.png"));
-                log.debug("player1: red_x");
-            } else if (player2.getImage() == 4) {
-                this.image2 = new ImageIcon(".\\src\\Pictures\\red_o.png");
-                log.debug("player1: red_o");
-            }
-        }
-
-    }
-
-    private void doByPlayerMode(MouseEvent e) {
-        TicTacController.playSound(new File(".\\src\\Sounds\\click.wav"));
-        if (playing_mode == 0) {
-            if (playing_type == 3) {
-                controlOnePlayerGameHard(e.getComponent());
-            } else if (playing_type == 2) {
-                controlOnePlayerGameMedium(e.getComponent());
-            } else if (playing_type == 1) {
-                controlOnePlayerGameEasy(e.getComponent());
-            }
-        } else if (playing_mode == 1) {
-            controlTwoPlayerGame(e.getComponent());
-        } else if (playing_mode == 2) {
-            controlNetworkGame(player1, e);
-        }
-    }
-
-    //completed
+   
+     //completed random algo
     public void randomClick() {
         Random random = new Random();
         int number = Math.abs(random.nextInt() % 9);
@@ -800,287 +698,10 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         int isWin = selectButton(number);
 
     }
-
-    public void controlOnePlayerGame(Component component) {
-        JButton button = (JButton) component;
-
-        if (button.isFocusable()) {
-            if (turn == true) {
-
-                button.setIcon(image1);
-                button.setText("0");
-                turn_count++;
-            } else {
-
-                button.setIcon(image2);
-                button.setText("1");
-                turn_count++;
-            }
-            button.setFocusable(false);
-            // button.setEnabled(false);
-
-            turn = !turn;
-            checkWin();
-            labelController();
-        }
-    }
-
-    public void controlTwoPlayerGame(Component component) {
-
-        JButton button = (JButton) component;
-        if (button.isFocusable()) {
-            if (turn == true) {
-                button.setIcon(image1);
-                button.setText("0");
-                turn_count++;
-            } else {
-                button.setIcon(image2);
-                button.setText("1");
-                turn_count++;
-            }
-            button.setFocusable(false);
-            // button.setEnabled(false);
-            turn = !turn;
-
-            int checkWin = checkWin();
-            if (checkWin == 0) {
-                labelController();
-                //return true;
-            } else {
-                if (!turn) {
-                    player1.setCurrentDate();
-                    player2.setCurrentDate();
-                    if (checkWin == 1) {
-                        player1.setIsWin(1);
-                        player2.setIsWin(0);
-
-                    } else if (checkWin == 2) {
-                        player1.setIsWin(2);
-                        player2.setIsWin(2);
-                    }
-                } else if (turn) {
-                    player2.setCurrentDate();
-                    player1.setCurrentDate();
-                    if (checkWin == 1) {
-                        player1.setIsWin(0);
-                        player2.setIsWin(1);
-
-                    } else if (checkWin == 2) {
-                        player1.setIsWin(2);
-                        player2.setIsWin(2);
-                    }
-                }
-                try {
-                    playerController.addNewPlay(player1);
-                    playerController.addNewPlay(player2);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
-                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-
-            labelController();
-        }
-    }
-
-    public void controlNetworkGame(Player player, MouseEvent e) {
-
-        JButton button = (JButton) e.getComponent();
-        if (button.isFocusable()) {
-            if (network_player.isIs_server()) {
-                button.setIcon(image1);
-            } else {
-                button.setIcon(image2);
-            }
-
-            if (turn == true) {
-                network_player.control(position);
-                if (network_player.isWon()) {
-                    networkMsgLabel.setText("You won!");
-                } else if (network_player.isEnemyWon()) {
-                    networkMsgLabel.setText("You lost!");
-                } else if (network_player.isTie()) {
-                    networkMsgLabel.setText("A Draw!");
-                }
-            }
-
-        }
-    }
-
-    public void labelController() {
-        if (turn) {
-            chanceLabel.setText("Chance for");//tic for a
-            labelA.setBorder(new LineBorder(Color.BLACK));
-            labelB.setBorder(new LineBorder(Color.WHITE));
-        } else {
-            labelB.setBorder(new LineBorder(Color.BLACK));
-            labelA.setBorder(new LineBorder(Color.WHITE));
-        }
-
-    }
-
-    public String findWinner() {
-        if (turn == false) {
-            return player2.getName();
-        }
-        return player1.getName();
-
-    }
-
-    public void newGame() {
-        new ModeSelector().setVisible(true);
-        this.setVisible(false);
-
-    }
-
-    //complite
-    public int checkWin() {
-        if (turn_count <= 9) {
-            if ((A1.getText() == A2.getText()) && (A2.getText() == A3.getText()) && (A1.getText() != "")) {
-                JOptionPane.showMessageDialog(null, findWinner() + " win the match");
-                newGame();
-                return 1;
-            } else if ((B1.getText() == B2.getText()) && (B2.getText() == B3.getText()) && (B1.getText() != "")) {
-                JOptionPane.showMessageDialog(null, findWinner() + " win the match");
-                newGame();
-                return 1;
-            } else if ((C1.getText() == C2.getText()) && (C2.getText() == C3.getText()) && (C1.getText() != "")) {
-                JOptionPane.showMessageDialog(null, findWinner() + " win the match");
-                newGame();
-                return 1;
-            } else if ((A1.getText() == B1.getText()) && (B1.getText() == C1.getText()) && (A1.getText() != "")) {
-                JOptionPane.showMessageDialog(null, findWinner() + " win the match");
-                newGame();
-                return 1;
-            } else if ((A2.getText() == B2.getText()) && (B2.getText() == C2.getText()) && (A2.getText() != "")) {
-                JOptionPane.showMessageDialog(null, findWinner() + " win the match");
-                newGame();
-                return 1;
-            } else if ((A3.getText() == B3.getText()) && (B3.getText() == C3.getText()) && (A3.getText() != "")) {
-                JOptionPane.showMessageDialog(null, findWinner() + " win the match");
-                newGame();
-                return 1;
-            } else if ((A1.getText() == B2.getText()) && (B2.getText() == C3.getText()) && (A1.getText() != "")) {
-                JOptionPane.showMessageDialog(null, findWinner() + " win the match");
-                newGame();
-                return 1;
-            } else if ((A3.getText() == B2.getText()) && (C1.getText() == B2.getText()) && (A3.getText() != "")) {
-                JOptionPane.showMessageDialog(null, findWinner() + " win the match");
-                newGame();
-                return 1;
-            }
-        }
-        if (turn_count == 9) {
-            JOptionPane.showMessageDialog(null, "No winner!");
-            newGame();
-            return 2;
-        }
-        return 0;
-    }
-
-    public ImageIcon showSymbol() {
-        if (turn == true) {
-            return image1;
-        } else {
-            return image2;
-        }
-    }
-
-    private void enterButton(MouseEvent evt) {
-        JButton b = (JButton) evt.getComponent();
-        if (b.isFocusable()) {
-            b.setIcon(showSymbol());
-        }
-    }
-
-    private void leaveButton(MouseEvent evt) {
-        JButton b = (JButton) evt.getComponent();
-        if (b.isFocusable()) {
-            b.setIcon(null);
-        }
-    }
-
-    public boolean checkToAvoidWin(Component component) {
-        return checkSuitableClick(component, "0", "1");
-    }
-
-    public boolean checkToOwnWin(Component component) {
-        return checkSuitableClick(component, "1", "0");
-    }
-
-    // hard method
-    public void controlOnePlayerGameHard(Component component) {
-        boolean humanPart = humanPart(component);
-        if (humanPart) {
-            boolean checkToOwnWin = checkToOwnWin(component);
-            log.debug(checkToOwnWin + "own win");
-
-            if (!checkToOwnWin) {
-                boolean checkToAvoidWin = checkToAvoidWin(component);
-                System.out.println(checkToAvoidWin);
-                if (!checkToAvoidWin) {
-                    log.debug("random-hard");
-                    randomClick();
-                }
-            }
-        }
-    }
-
-    // medium method
-    public void controlOnePlayerGameMedium(Component component) {
-        boolean humanPart = humanPart(component);
-        if (humanPart) {
-            boolean checkToAvoidWin = checkToAvoidWin(component);
-            log.debug(checkToAvoidWin);
-            if (!checkToAvoidWin) {
-                log.debug("random-medium");
-                randomClick();
-            }
-
-        }
-    }
-
-    //easy mehod
-    public void controlOnePlayerGameEasy(Component component) {
-        boolean humanPart = humanPart(component);
-        if (humanPart) {
-            log.debug("random-easy");
-            randomClick();
-
-        }
-    }
-
-    //completed
-    public boolean humanPart(Component component) {
-        JButton button = (JButton) component;
-        if (button.isFocusable()) {
-            //human network_player
-            button.setIcon(image2);
-            button.setText("0");
-            button.setFocusable(false);
-            turn_count++;
-            turn = !turn;
-            int checkWin = checkWin();
-            if (checkWin == 0) {
-                labelController();
-                return true;
-            } else {
-                player1.setCurrentDate();
-                player1.setIsWin(checkWin);
-                try {
-                    playerController.addNewPlay(player1);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
-                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-        return false;
-    }
-
-    public boolean checkSuitableClick(Component component, String player, String machine) {
+    
+    //compled main algo
+    
+     public boolean checkSuitableClick(Component component, String player, String machine) {
         JButton button = (JButton) component;
         //automated part
         int ar[] = new int[9];
@@ -1198,7 +819,76 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         }
 
     }
+   
+    //set suitable image for lable
+    private void setImages() {
+        if (player1 != null) {
+            if (player1.getImage() == 1) {
 
+                this.image1 = new ImageIcon(".\\src\\Pictures\\gold_x.png");
+                log.debug("player1:gold_X");
+            } else if (player1.getImage() == 2) {
+
+                this.image1 = new ImageIcon(getClass().getResource("/Pictures/gold_o.png"));
+                log.debug("player1: gold_O");
+            } else if (player1.getImage() == 3) {
+
+                this.image1 = new ImageIcon(getClass().getResource("/Pictures/red_x.png"));
+                log.debug("player1: red_x");
+            } else if (player1.getImage() == 4) {
+
+                this.image1 = new ImageIcon(getClass().getResource("/Pictures/red_o.png"));
+                log.debug("player1: red_o");
+            }
+        }
+        if (player2 != null) {
+            if (player2.getImage() == 1) {
+                this.image2 = new ImageIcon(getClass().getResource("/Pictures/gold_x.png"));
+                log.debug("player1: gold_x");
+            } else if (player2.getImage() == 2) {
+                this.image2 = new ImageIcon(getClass().getResource("/Pictures/gold_o.png"));
+                log.debug("player1: gold_o");
+            } else if (player2.getImage() == 3) {
+                this.image2 = new ImageIcon(getClass().getResource("/Pictures/red_x.png"));
+                log.debug("player1: red_x");
+            } else if (player2.getImage() == 4) {
+                this.image2 = new ImageIcon(".\\src\\Pictures\\red_o.png");
+                log.debug("player1: red_o");
+            }
+        }
+
+    }
+    
+      //completed
+    public boolean humanPart(Component component) {
+        JButton button = (JButton) component;
+        if (button.isFocusable()) {
+            //human network_player
+            button.setIcon(image2);
+            button.setText("0");
+            button.setFocusable(false);
+            turn_count++;
+            turn = !turn;
+            int checkWin = checkWin();
+            if (checkWin == 0) {
+                labelController();
+                return true;
+            } else {
+                player1.setCurrentDate();
+                player1.setIsWin(checkWin);
+                try {
+                    playerController.addNewPlay(player1);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return false;
+    }
+    
+    // machine part hadlle
     public int selectButton(int j) {
         try {
             Thread.sleep(500);
@@ -1232,6 +922,282 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         return checkWin;
     }
 
+
+    //to call avoid win algorithm 
+     public boolean checkToAvoidWin(Component component) {
+        return checkSuitableClick(component, "0", "1");
+    }
+     
+     //to call check to win algo
+    public boolean checkToOwnWin(Component component) {
+        return checkSuitableClick(component, "1", "0");
+    }
+
+    // hard method
+    public void controlOnePlayerGameHard(Component component) {
+        boolean humanPart = humanPart(component);
+        if (humanPart) {
+            boolean checkToOwnWin = checkToOwnWin(component);
+            log.debug(checkToOwnWin + "own win");
+
+            if (!checkToOwnWin) {
+                boolean checkToAvoidWin = checkToAvoidWin(component);
+                System.out.println(checkToAvoidWin);
+                if (!checkToAvoidWin) {
+                    log.debug("random-hard");
+                    randomClick();
+                }
+            }
+        }
+    }
+
+    // medium method
+    public void controlOnePlayerGameMedium(Component component) {
+        boolean humanPart = humanPart(component);
+        if (humanPart) {
+            boolean checkToAvoidWin = checkToAvoidWin(component);
+            log.debug(checkToAvoidWin);
+            if (!checkToAvoidWin) {
+                log.debug("random-medium");
+                randomClick();
+            }
+
+        }
+    }
+
+    //easy mehod
+    public void controlOnePlayerGameEasy(Component component) {
+        boolean humanPart = humanPart(component);
+        if (humanPart) {
+            log.debug("random-easy");
+            randomClick();
+
+        }
+    }
+
+    //this call suitable mehod when playing button clicking
+    private void doByPlayerMode(MouseEvent e) {
+        TicTacController.playSound(new File(".\\src\\Sounds\\click.wav"));
+        if (playing_mode == 0) {
+            if (playing_type == 3) {
+                controlOnePlayerGameHard(e.getComponent());
+            } else if (playing_type == 2) {
+                controlOnePlayerGameMedium(e.getComponent());
+            } else if (playing_type == 1) {
+                controlOnePlayerGameEasy(e.getComponent());
+            }
+        } else if (playing_mode == 1) {
+            controlTwoPlayerGame(e.getComponent());
+        } else if (playing_mode == 2) {
+            controlNetworkGame(player1, e);
+        }
+    }
+
+    //controll one player game 
+    public void controlOnePlayerGame(Component component) {
+        JButton button = (JButton) component;
+
+        if (button.isFocusable()) {
+            if (turn == true) {
+
+                button.setIcon(image1);
+                button.setText("0");
+                turn_count++;
+            } else {
+
+                button.setIcon(image2);
+                button.setText("1");
+                turn_count++;
+            }
+            button.setFocusable(false);
+            // button.setEnabled(false);
+
+            turn = !turn;
+            checkWin();
+            labelController();
+        }
+    }
+
+    //controll two player     
+    public void controlTwoPlayerGame(Component component) {
+
+        JButton button = (JButton) component;
+        if (button.isFocusable()) {
+            if (turn == true) {
+                button.setIcon(image1);
+                button.setText("0");
+                turn_count++;
+            } else {
+                button.setIcon(image2);
+                button.setText("1");
+                turn_count++;
+            }
+            button.setFocusable(false);
+            // button.setEnabled(false);
+            turn = !turn;
+
+            int checkWin = checkWin();
+            if (checkWin == 0) {
+                labelController();
+                //return true;
+            } else {
+                if (!turn) {
+                    player1.setCurrentDate();
+                    player2.setCurrentDate();
+                    if (checkWin == 1) {
+                        player1.setIsWin(1);
+                        player2.setIsWin(0);
+
+                    } else if (checkWin == 2) {
+                        player1.setIsWin(2);
+                        player2.setIsWin(2);
+                    }
+                } else if (turn ) {
+                    player2.setCurrentDate();
+                    player1.setCurrentDate();
+                    if (checkWin == 1) {
+                        player1.setIsWin(0);
+                        player2.setIsWin(1);
+
+                    } else if (checkWin == 2) {
+                        player1.setIsWin(2);
+                        player2.setIsWin(2);
+                    }
+                }
+                try {
+                    playerController.addNewPlay(player1);
+                    playerController.addNewPlay(player2);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            labelController();
+        }
+    }
+
+    //controll network player game
+    public void controlNetworkGame(Player player, MouseEvent e) {
+
+        JButton button = (JButton) e.getComponent();
+        if (button.isFocusable()) {
+            if (network_player.isIs_server()) {
+                button.setIcon(image1);
+            } else {
+                button.setIcon(image2);
+            }
+
+            if (turn == true) {
+                network_player.control(position);
+                if (network_player.isWon()) {
+                    networkMsgLabel.setText("You won!");
+                } else if (network_player.isEnemyWon()) {
+                    networkMsgLabel.setText("You lost!");
+                } else if (network_player.isTie()) {
+                    networkMsgLabel.setText("A Draw!");
+                }
+            }
+
+        }
+    }
+
+    // select suitable lable for next click
+    public void labelController() {
+        if (turn) {
+            chanceLabel.setText("Chance for");//tic for a
+            labelA.setBorder(new LineBorder(Color.BLACK));
+            labelB.setBorder(new LineBorder(Color.WHITE));
+        } else {
+            labelB.setBorder(new LineBorder(Color.BLACK));
+            labelA.setBorder(new LineBorder(Color.WHITE));
+        }
+
+    }
+
+    //find winner name
+    public String findWinner() {
+        if (turn == false) {
+            return player2.getName();
+        }
+        return player1.getName();
+
+    }
+    
+    //go back 
+    public void newGame() {
+        new ModeSelector().setVisible(true);
+        this.setVisible(false);
+
+    }
+
+    //complite
+    public int checkWin() {
+        if (turn_count <= 9) {
+            if ((A1.getText() == A2.getText()) && (A2.getText() == A3.getText()) && (A1.getText() != "")) {
+                JOptionPane.showMessageDialog(null, findWinner() + " win the match");
+                newGame();
+                return 1;
+            } else if ((B1.getText() == B2.getText()) && (B2.getText() == B3.getText()) && (B1.getText() != "")) {
+                JOptionPane.showMessageDialog(null, findWinner() + " win the match");
+                newGame();
+                return 1;
+            } else if ((C1.getText() == C2.getText()) && (C2.getText() == C3.getText()) && (C1.getText() != "")) {
+                JOptionPane.showMessageDialog(null, findWinner() + " win the match");
+                newGame();
+                return 1;
+            } else if ((A1.getText() == B1.getText()) && (B1.getText() == C1.getText()) && (A1.getText() != "")) {
+                JOptionPane.showMessageDialog(null, findWinner() + " win the match");
+                newGame();
+                return 1;
+            } else if ((A2.getText() == B2.getText()) && (B2.getText() == C2.getText()) && (A2.getText() != "")) {
+                JOptionPane.showMessageDialog(null, findWinner() + " win the match");
+                newGame();
+                return 1;
+            } else if ((A3.getText() == B3.getText()) && (B3.getText() == C3.getText()) && (A3.getText() != "")) {
+                JOptionPane.showMessageDialog(null, findWinner() + " win the match");
+                newGame();
+                return 1;
+            } else if ((A1.getText() == B2.getText()) && (B2.getText() == C3.getText()) && (A1.getText() != "")) {
+                JOptionPane.showMessageDialog(null, findWinner() + " win the match");
+                newGame();
+                return 1;
+            } else if ((A3.getText() == B2.getText()) && (C1.getText() == B2.getText()) && (A3.getText() != "")) {
+                JOptionPane.showMessageDialog(null, findWinner() + " win the match");
+                newGame();
+                return 1;
+            }
+        }
+        if (turn_count == 9) {
+            JOptionPane.showMessageDialog(null, "No winner!");
+            newGame();
+            return 2;
+        }
+        return 0;
+    }
+
+    public ImageIcon showSymbol() {
+        if (turn == true) {
+            return image1;
+        } else {
+            return image2;
+        }
+    }
+
+    private void enterButton(MouseEvent evt) {
+        JButton b = (JButton) evt.getComponent();
+        if (b.isFocusable()) {
+            b.setIcon(showSymbol());
+        }
+    }
+
+    private void leaveButton(MouseEvent evt) {
+        JButton b = (JButton) evt.getComponent();
+        if (b.isFocusable()) {
+            b.setIcon(null);
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -1282,13 +1248,7 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JPanel buttonPanal;
     private javax.swing.JLabel chanceLabel;
-    private javax.swing.JLabel drawn_count;
     private javax.swing.JButton homeButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -1297,12 +1257,13 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JLabel labelA;
     private javax.swing.JLabel labelB;
+    private javax.swing.JLabel nameLabe1player2;
+    private javax.swing.JLabel nameLabelPlayer1;
     private javax.swing.JLabel networkMsgLabel;
     private javax.swing.JMenuItem newGameMenu;
     // End of variables declaration//GEN-END:variables

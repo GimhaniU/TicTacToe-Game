@@ -376,3 +376,53 @@
 2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:761) - player1: gold_x
 2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:755) - player1: red_o
 2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:761) - player1: gold_x
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:889) - player1: red_o
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:895) - player1: gold_x
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:900) - player1: red_o
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:906) - player1: gold_x
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:900) - player1: red_o
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:906) - player1: gold_x
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:833) - player1: gold_O
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:847) - player1: gold_x
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[0] = 0
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[1] = 11
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[2] = 12
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[3] = 13
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[4] = 14
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[5] = 15
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[6] = 16
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[7] = 17
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[8] = 18
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:959) - false
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:961) - random-medium
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[0] = 0
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[1] = 0
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[2] = 12
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[3] = 13
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[4] = 14
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[5] = 15
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[6] = 16
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[7] = 17
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[8] = 1
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:959) - true
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[0] = 0
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[1] = 0
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[2] = 1
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[3] = 13
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[4] = 14
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[5] = 15
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[6] = 16
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[7] = 0
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[8] = 1
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:959) - true
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[0] = 0
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[1] = 0
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[2] = 1
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[3] = 13
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[4] = 1
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[5] = 0
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[6] = 16
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[7] = 0
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:717) - ar[8] = 1
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:959) - false
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:961) - random-medium
