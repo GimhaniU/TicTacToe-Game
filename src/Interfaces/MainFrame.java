@@ -830,12 +830,10 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         JButton button = (JButton) component;
         if (button.isFocusable()) {
             if (turn == true) {
-
                 button.setIcon(image1);
                 button.setText("0");
                 turn_count++;
             } else {
-
                 button.setIcon(image2);
                 button.setText("1");
                 turn_count++;
@@ -843,7 +841,45 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
             button.setFocusable(false);
             // button.setEnabled(false);
             turn = !turn;
-            checkWin();
+
+            int checkWin = checkWin();
+            if (checkWin == 0) {
+                labelController();
+                //return true;
+            } else {
+                if (!turn) {
+                    player1.setCurrentDate();
+                    player2.setCurrentDate();
+                    if (checkWin == 1) {
+                        player1.setIsWin(1);
+                        player2.setIsWin(0);
+
+                    } else if (checkWin == 2) {
+                        player1.setIsWin(2);
+                        player2.setIsWin(2);
+                    }
+                } else if (turn) {
+                    player2.setCurrentDate();
+                    player1.setCurrentDate();
+                    if (checkWin == 1) {
+                        player1.setIsWin(0);
+                        player2.setIsWin(1);
+
+                    } else if (checkWin == 2) {
+                        player1.setIsWin(2);
+                        player2.setIsWin(2);
+                    }
+                }
+                try {
+                    playerController.addNewPlay(player1);
+                    playerController.addNewPlay(player2);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
             labelController();
         }
     }
@@ -1016,7 +1052,6 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
     }
 
     //completed
-
     public boolean humanPart(Component component) {
         JButton button = (JButton) component;
         if (button.isFocusable()) {
@@ -1064,7 +1099,7 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
 
         L1:
         while (true) {
-           
+
             // horisontally check 3rd one
             int j = 0;
             while (j < 7) {

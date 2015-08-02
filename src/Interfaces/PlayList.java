@@ -88,7 +88,18 @@ public class PlayList extends javax.swing.JDialog {
         try {
             ArrayList<Player> allplayer = playerController.getAllplayer();
             for (Player allplayer1 : allplayer) {
-                Object [] playstate ={allplayer1.getName(),allplayer1.getCurrentDate(),allplayer1.getPlayerType(),allplayer1.getIsWin()};
+                String winState;
+                int isWin = allplayer1.getIsWin();
+                if(isWin==0){
+                    winState="didn't Win";
+                }else if(isWin==1){
+                    winState="Won";
+                }else{
+                    winState="Draw";
+                }
+                
+                System.out.println(allplayer1.getCurrentDate());
+                Object [] playstate ={allplayer1.getName(),allplayer1.getCurrentDate(),allplayer1.getPlayerType(),winState};
                 dmodel.addRow( playstate);
             }
         } catch (ClassNotFoundException ex) {

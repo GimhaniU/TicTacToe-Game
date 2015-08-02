@@ -17,7 +17,7 @@ public class Player {
 
     DateFormat dateFormat;
     Date date;
-    private String name;
+    private String name; 
     private String currentDate;
     private String playerType;
     private int isWin;
@@ -37,7 +37,7 @@ public class Player {
     public Player(String name,String type,String Date,int isWin){
         this();
         this.name=name;
-        this.date=date;
+        this.currentDate=Date;
         this.playerType=type;
         this.isWin=isWin;
         

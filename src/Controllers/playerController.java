@@ -31,7 +31,7 @@ public class playerController {
         ResultSet rst = DBHandler.getData(conn, sql);
         ArrayList<Player> playList = new ArrayList<>();
         while (rst.next()) {
-            Player player = new Player(rst.getString("Name"),rst.getString("playDate"), rst.getString("playType"),  rst.getInt("isWin"));
+            Player player = new Player(rst.getString("Name"),rst.getString("playType"), rst.getString("playDate"),  rst.getInt("isWin"));
             playList.add(player);
         }
         return playList;

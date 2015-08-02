@@ -8,5 +8,5 @@ CREATE TABLE player(
 	playType VARCHAR(20),
 	playDate VARCHAR(30) NOT NULL,
 	isWin INT(1),
-	CONSTRAINT PRIMARY KEY (playDate)
+	CONSTRAINT PRIMARY KEY (playDate,Name)
 );

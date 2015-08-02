@@ -368,3 +368,11 @@
 2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:1061) - ar[6] = 16
 2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:1061) - ar[7] = 0
 2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:1061) - ar[8] = 1
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:755) - player1: red_o
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:761) - player1: gold_x
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:755) - player1: red_o
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:761) - player1: gold_x
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:755) - player1: red_o
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:761) - player1: gold_x
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:755) - player1: red_o
+2015-08-02 DEBUG [AWT-EventQueue-0] (MainFrame.java:761) - player1: gold_x

@@ -40,7 +40,7 @@ public class PlayerNameForm extends javax.swing.JFrame {
         if (playermode == 0) {
             player2NameText.setText("Computer");
             player2NameText.setEnabled(false);
-        }else {
+        } else {
             levelPanel.setVisible(false);
         }
 
@@ -401,22 +401,26 @@ public class PlayerNameForm extends javax.swing.JFrame {
         }
         Player player1 = new Player(player1NameText.getText(), 1, imagePlayer1, player1turn);
         Player player2 = new Player(player2NameText.getText(), 2, imagePlayer2, player2turn);
+        if (playermode == 0) {
+            if (mediumToggleButton.isSelected()) {
+                playing_type = 2;
+                player1.setPlayerType("Medium");
+                player2.setPlayerType("Medium");
+            } else if (hardToggleButton.isSelected()) {
+                playing_type = 3;
 
-        if (mediumToggleButton.isSelected()) {
-            playing_type = 2;
-            player1.setPlayerType("Medium");
-            player2.setPlayerType("Medium");
-        } else if (hardToggleButton.isSelected()) {
-            playing_type = 3;
-            player1.setPlayerType("Hard");
-            player2.setPlayerType("Hard");
-        }else{
-            player1.setPlayerType("Easy");
-            player2.setPlayerType("Easy");
-        
-        
+                player1.setPlayerType("Hard");
+                player2.setPlayerType("Hard");
+            } else {
+                player1.setPlayerType("Easy");
+                player2.setPlayerType("Easy");
+            }
+        } else {
+            player1.setPlayerType("with "+ player2.getName());
+            player2.setPlayerType("with "+player1.getName());
+
         }
-        
+
         new MainFrame(playermode, playing_type, player1, player2).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_playButtonActionPerformed
